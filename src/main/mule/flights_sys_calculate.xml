@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+
+	<flow name="subtract" doc:id="3ebd6971-5a58-4d6f-9a95-c24a59e6c5ed" >
+		<ee:transform doc:name="Transform Message" doc:id="a44361a8-7aaa-4ebf-9126-bf9f247eb260" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns ns0 http://tempuri.org/
+---
+{
+	ns0#Subtract: {
+		ns0#intA: payload.a,
+		ns0#intB: payload.b
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<wsc:consume doc:name="Consume" doc:id="48178320-2bc7-4c28-b3c6-825dc8e55a9e" operation="Subtract" config-ref="Web_Service_Consumer_Config"/>
+		<ee:transform doc:name="Transform Message" doc:id="80f4762a-6dba-4565-bc77-f32c656f3d5b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0ns ns0 http://tempuri.org/
+
+output application/json
+---
+payload.body.ns0#SubtractResponse.ns0#SubtractResult]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="14cd9305-a56c-403f-b2b8-3680979d3061" message="#[payload]"/>
+	</flow>
+	<flow name="multiply" doc:id="b629a732-0777-4f8b-8ad6-8ccd35dbccec" >
+		<ee:transform doc:name="Transform Message" doc:id="9aa811ad-1591-400d-b386-cc018166fc04" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns ns0 http://tempuri.org/
+---
+{
+	ns0#Multiply: {
+		ns0#intA: payload.a,
+		ns0#intB: payload.b
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<wsc:consume doc:name="Consume" doc:id="10cf632f-fca0-44ba-b227-33c4e74f2521" operation="Multiply" config-ref="Web_Service_Consumer_Config"/>
+		<ee:transform doc:name="Transform Message" doc:id="3b6728db-3557-4487-905c-464d30dbb3b5" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0ns ns0 http://tempuri.org/
+
+output application/json
+---
+payload.body.ns0#MultiplyResponse.ns0#MultiplyResult]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="logger" doc:id="c039d5ba-3afc-4b4c-83de-73f16b557561" message="#[payload]"/>
+	</flow>
+</mule>

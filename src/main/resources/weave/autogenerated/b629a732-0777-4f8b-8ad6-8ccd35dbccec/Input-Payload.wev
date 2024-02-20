@@ -1,0 +1,8 @@
+%dw 2.0
+
+type auto_b629a732_0777_4f8b_8ad6_8ccd35dbccec_Input_Payload = {
+  a: Number, 
+  b: Number, 
+  _?: Any
+}
+

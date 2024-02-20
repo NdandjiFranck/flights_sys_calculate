@@ -1,0 +1,14 @@
+lissub:
+  host: "localhost"
+  port: "8088"
+  
+lismul:
+  host: "localhost"
+  port: "8090"
+  
+webser:
+  wsdlloca: "http://www.dneonline.com/calculator.asmx?WSDL"
+  service: "Calculator"
+  port: "CalculatorSoap"
+  address: "http://www.dneonline.com/calculator.asmx"
+  

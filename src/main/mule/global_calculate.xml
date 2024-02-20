@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:wsc="http://www.mulesoft.org/schema/mule/wsc"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/wsc http://www.mulesoft.org/schema/mule/wsc/current/mule-wsc.xsd">
+	<http:listener-config name="HTTP_Listener_subtract" doc:name="HTTP Listener config" doc:id="242dbef4-8efc-4e73-a999-5fafab3d0990" >
+		<http:listener-connection host="${lissub.host}" port="${lissub.port}" readTimeout="600000000"/>
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_multiply" doc:name="HTTP Listener config" doc:id="49026dfc-0984-44a4-9362-cfc33eeaac0d" >
+		<http:listener-connection host="${lismul.host}" port="${lismul.port}" readTimeout="600000000"/>
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="71b2ca6a-8725-4d3d-9ead-5918ddd0ed26" file="config_calculate.yaml" />
+	<wsc:config name="Web_Service_Consumer_Config" doc:name="Web Service Consumer Config" doc:id="26352ee0-50c7-4674-a787-d19c83c86df6" >
+		<wsc:connection wsdlLocation="${webser.wsdlloca}" service="${webser.service}" port="${webser.port}" address="${webser.address}" />
+	</wsc:config>
+</mule>

@@ -1,0 +1,58 @@
+#%RAML 1.0
+title: sys_calculate_Api
+
+types:
+  calculateInput: !include /datatype/sys_calcultateInputDatatype.raml
+  calulateOutput: !include /datatype/sys_calculateOutputDatatype.raml
+
+
+/subtract:
+ post:
+    description: subtract a-b
+    queryParameters:
+      destination:
+        required: false
+        type: string
+    body:
+      application/json: 
+        type: calculateInput
+        example:
+         {
+             "a": 8,
+             "b": 2
+         }
+    responses:
+      201:
+        body:
+          application/json:
+            type: calulateOutput
+            example:  
+              {  
+                "result": 6
+              }
+
+
+/multiply:
+ post:
+    description: multiply a*b
+    queryParameters:
+      destination:
+        required: false
+        type: string
+    body:
+      application/json: 
+        type: calculateInput
+        example:
+         {
+             "a": 8,
+             "b": 2
+         }
+    responses:
+      201:
+        body:
+          application/json:
+            type: calulateOutput
+            example:  
+              {   
+                "result": 16
+              }
