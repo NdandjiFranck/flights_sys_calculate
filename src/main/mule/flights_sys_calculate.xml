@@ -59,6 +59,6 @@ output application/json
 payload.body.ns0#MultiplyResponse.ns0#MultiplyResult]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<logger level="INFO" doc:name="logger" doc:id="c039d5ba-3afc-4b4c-83de-73f16b557561" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="c039d5ba-3afc-4b4c-83de-73f16b557561" message="#[payload]"/>
 	</flow>
 </mule>
